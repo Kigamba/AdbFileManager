@@ -9,6 +9,7 @@ data class FileItem(
     val isDir: Boolean,
     val fileName: String,
     val size: String,
+    val sizeInBytes: Long,
     val date: String,
     val icon: String,
     val link: String?,
@@ -73,6 +74,7 @@ object FileUtils {
                     isDir = isDir,
                     fileName = name,
                     size = "",
+                    sizeInBytes = 0,
                     date = "",
                     icon = getIconPath(isDir, name),
                     link = link
@@ -91,8 +93,20 @@ object FileUtils {
                 var name = tokens[7].run {
                     if (permissions.startsWith("d") && endsWith("/")) {
                         substring(0, length - 1)
+
                     } else {
-                        this
+                        // Remove the token that contains ->
+                        if (tokens.size > 8) {
+                            val fullName = tokens.subList(7, tokens.size).joinToString(" ")
+                            // This is a directory, let's skip the last forward-slash
+                            if (fullName.endsWith("/")) {
+                                return@run fullName.substring(0, fullName.length - 1)
+                            }
+
+                            return@run fullName
+                        } else {
+                            this
+                        }
                     }
                 }
                 
@@ -116,6 +130,7 @@ object FileUtils {
                     isDir = isDir,
                     fileName = name,
                     size = if (isDir) "" else formatSize(decimalFormat, size),
+                    sizeInBytes = size,
                     date = "${date.replace("-", "/")} $time",
                     icon = getIconPath(isDir, name),
                     link = link

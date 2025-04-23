@@ -1,5 +1,6 @@
 package runtime.adb
 
+import backup.log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -97,8 +98,28 @@ class AdbDevicePoller(
             onResult(listOf("Error: ${e.message}"))
         }
     }
-    
-    companion object {
+
+    /**
+     * Execute an ADB command on the current device
+     * @param cmd The ADB command to execute
+     * @param onResult Callback invoked with the command output
+     */
+    suspend fun exec(cmd: String) : List<String> {
+        log(String.format("ADB Command: %s", cmd))
+
+        if (currentDevice == null) {
+            return listOf("No device connected")
+        }
+
+        try {
+            return adb.exec(currentDevice!!, cmd)
+        } catch (e: Exception) {
+            return listOf("Error: ${e.message}")
+        }
+    }
+
+
+        companion object {
         private const val POLLING_INTERVAL_MS = 3000L
     }
 }

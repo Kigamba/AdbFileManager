@@ -52,7 +52,7 @@ fun PathNavigator(
         ) {
             // 根目录按钮
             PathItem(
-                text = "根目录",
+                text = "root directory",
                 isRoot = true,
                 onClick = { onPathClick(-1) }
             )
@@ -134,7 +134,7 @@ fun PathNavigator(
                         modifier = Modifier.height(28.dp)
                     ) {
                         Text(
-                            text = "折叠",
+                            text = "fold",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.primary
                         )

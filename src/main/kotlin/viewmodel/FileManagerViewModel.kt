@@ -3,6 +3,7 @@ package viewmodel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
+import backup.DeviceBackup
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +11,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import model.FileItem
 import model.FileUtils
+import runtime.adb.Adb
 import runtime.adb.AdbDevicePoller
+import java.io.File
+import java.io.FileWriter
+import java.nio.file.Files
+import java.nio.file.attribute.BasicFileAttributes
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.LinkedList
+import java.util.Locale
+
 
 /**
  * ViewModel for file manager operations
@@ -42,6 +55,8 @@ class FileManagerViewModel(
     // Current file being edited
     val currentFileName = mutableStateOf("")
     val currentFileContent = mutableStateOf("")
+
+    val logFile = File("C:/Users/Kigamba/Downloads/backup-log.txt")
     
     /**
      * Load files from the current directory
@@ -343,6 +358,7 @@ class FileManagerViewModel(
             }
         }
     }
+
     
     /**
      * Push file to device
@@ -484,4 +500,16 @@ class FileManagerViewModel(
     fun clearSuccess() {
         _success.value = null
     }
-} 
+
+
+    /**
+     * Pull file to local device
+     */
+    fun backup(fileName: String
+               , destinationPath: String = "Y:/OnePlusTest/"
+        //, destinationPath: String = "M:/OnePlus 10T 12-04/"
+               , onSuccess: () -> Unit) {
+        DeviceBackup(adbDevicePoller, coroutineScope)
+            .backup(fileName, destinationPath, onSuccess)
+    }
+}

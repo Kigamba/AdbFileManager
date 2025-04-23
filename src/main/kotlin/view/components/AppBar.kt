@@ -113,6 +113,7 @@ fun FileManagerToolbar(
     onCreateDirectoryClick: () -> Unit,
     onCreateFileClick: () -> Unit,
     onRefreshClick: () -> Unit,
+    onBackupClick: () -> Unit,
     onBackClick: () -> Unit,
     canNavigateUp: Boolean = false,
     onImportClick: () -> Unit = {}
@@ -158,7 +159,7 @@ fun FileManagerToolbar(
                     ToolbarButton(
                         onClick = onBackClick,
                         icon = Icons.Rounded.ArrowBack,
-                        text = "返回",
+                        text = "return",
                         tint = MaterialTheme.colorScheme.primary
                     )
                     
@@ -169,7 +170,7 @@ fun FileManagerToolbar(
                 ToolbarButton(
                     onClick = onCreateDirectoryClick,
                     icon = Icons.Rounded.CreateNewFolder,
-                    text = "新建文件夹",
+                    text = "Create new folder",
                     tint = MaterialTheme.colorScheme.secondary
                 )
                 
@@ -179,7 +180,7 @@ fun FileManagerToolbar(
                 ToolbarButton(
                     onClick = onCreateFileClick,
                     icon = Icons.Rounded.NoteAdd,
-                    text = "新建文件",
+                    text = "Create new file",
                     tint = MaterialTheme.colorScheme.tertiary
                 )
                 
@@ -189,7 +190,7 @@ fun FileManagerToolbar(
                 ToolbarButton(
                     onClick = onImportClick,
                     icon = Icons.Rounded.Upload,
-                    text = "导入文件",
+                    text = "Import file",
                     tint = MaterialTheme.colorScheme.secondary
                 )
                 
@@ -199,7 +200,17 @@ fun FileManagerToolbar(
                 ToolbarButton(
                     onClick = onRefreshClick,
                     icon = Icons.Rounded.Refresh,
-                    text = "刷新",
+                    text = "refresh",
+                    tint = MaterialTheme.colorScheme.primary
+                )
+
+                Spacer(modifier = Modifier.width(4.dp))
+
+                // 刷新按钮
+                ToolbarButton(
+                    onClick = onBackupClick,
+                    icon = Icons.Rounded.Refresh,
+                    text = "Backup!! to T:/OnePlus 10T 12-04/",
                     tint = MaterialTheme.colorScheme.primary
                 )
             }
@@ -211,7 +222,7 @@ fun FileManagerToolbar(
                 ) {
                     Icon(
                         imageVector = themeIcon,
-                        contentDescription = "切换主题",
+                        contentDescription = "switch theme",
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
@@ -223,7 +234,7 @@ fun FileManagerToolbar(
                 ) {
                     // 跟随系统选项
                     DropdownMenuItem(
-                        text = { Text("跟随系统") },
+                        text = { Text("Follow the system") },
                         onClick = { 
                             ThemeState.useSystemTheme()
                             showThemeMenu = false 
@@ -247,7 +258,7 @@ fun FileManagerToolbar(
                     
                     // 亮色模式选项
                     DropdownMenuItem(
-                        text = { Text("亮色模式") },
+                        text = { Text("light mode") },
                         onClick = { 
                             ThemeState.isDarkMode.value = false
                             showThemeMenu = false 
@@ -271,7 +282,7 @@ fun FileManagerToolbar(
                     
                     // 暗色模式选项
                     DropdownMenuItem(
-                        text = { Text("暗色模式") },
+                        text = { Text("dark mode") },
                         onClick = { 
                             ThemeState.isDarkMode.value = true
                             showThemeMenu = false 

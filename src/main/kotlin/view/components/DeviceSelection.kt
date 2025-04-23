@@ -60,7 +60,7 @@ fun NoDeviceScreen() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "未找到已连接的设备",
+                        text = "No connected device found",
                         style = MaterialTheme.typography.headlineMedium,
                         color = MaterialTheme.colorScheme.onErrorContainer,
                         textAlign = TextAlign.Center
@@ -69,7 +69,7 @@ fun NoDeviceScreen() {
                     Spacer(modifier = Modifier.height(16.dp))
                     
                     Text(
-                        text = "请连接一个Android设备或启动模拟器，然后刷新设备列表",
+                        text = "Please connect an Android device or start the emulator, then refresh the device list",
                         style = MaterialTheme.typography.bodyLarge,
                         color = MaterialTheme.colorScheme.onErrorContainer.copy(alpha = 0.8f),
                         textAlign = TextAlign.Center
@@ -78,13 +78,13 @@ fun NoDeviceScreen() {
                     Spacer(modifier = Modifier.height(24.dp))
                     
                     Button(
-                        onClick = { /* 刷新按钮，可以实现刷新功能 */ },
+                        onClick = { /* 刷新按钮，可以实现刷新功能 */ }, // Refresh button, which can realize the refresh function
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.error
                         ),
                         contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp)
                     ) {
-                        Text("刷新设备列表")
+                        Text("Refresh devices list")
                     }
                 }
             }

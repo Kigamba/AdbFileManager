@@ -74,6 +74,7 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
             ) {
                 Column(modifier = Modifier.fillMaxSize()) {
                     // 顶部导航区域（包含路径导航和工具栏）
+                    // Top navigation area (including breadcrumb navigation and toolbar)
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -113,7 +114,7 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
                                     ) {
                                         Icon(
                                             imageVector = Icons.Outlined.Search,
-                                            contentDescription = "搜索文件",
+                                            contentDescription = "Search files",
                                             tint = MaterialTheme.colorScheme.primary
                                         )
                                     }
@@ -137,6 +138,7 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
                                     onCreateDirectoryClick = { showCreateDirDialog = true },
                                     onCreateFileClick = { showCreateFileDialog = true },
                                     onRefreshClick = { viewModel.reload() },
+                                    onBackupClick = { viewModel.backup(fileName = "", onSuccess = {})},
                                     onBackClick = { viewModel.navigateUp() },
                                     canNavigateUp = viewModel.canNavigateUp(),
                                     onImportClick = { showFilePicker = true }
@@ -153,7 +155,7 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
                             exit = shrinkVertically() + fadeOut()
                         ) {
                             viewModel.error.collectAsState().value?.let {
-                                val isPermissionError = it.contains("权限不足")
+                                val isPermissionError = it.contains("Insufficient permissions")
 
                                 Surface(
                                     color = if (isPermissionError)
@@ -256,13 +258,13 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
                                 )
                                 Spacer(Modifier.height(16.dp))
                                 Text(
-                                    text = "当前目录为空",
+                                    text = "The current directory is empty",
                                     style = MaterialTheme.typography.titleMedium,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                                 Spacer(Modifier.height(8.dp))
                                 Text(
-                                    text = "没有找到任何文件或文件夹",
+                                    text = "No files or folders found",
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
                                 )
@@ -372,7 +374,7 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
                                             )
                                             Spacer(modifier = Modifier.height(16.dp))
                                             Text(
-                                                text = "正在加载...",
+                                                text = "Loading...",
                                                 style = MaterialTheme.typography.bodyLarge
                                             )
                                         }
@@ -401,7 +403,7 @@ fun FileManagerScreen(viewModel: FileManagerViewModel) {
                             ) {
                                 Icon(
                                     imageVector = Icons.Rounded.ArrowUpward,
-                                    contentDescription = "返回顶部"
+                                    contentDescription = "Back to top"
                                 )
                             }
                         }

@@ -38,7 +38,7 @@ fun main() = application {
     
     // 主应用程序窗口
     Window(
-        title = "ADB 文件管理器",
+        title = "ADB file manager",
         state = rememberWindowState(width = 1200.dp, height = 800.dp),
         onCloseRequest = ::exitApplication,
         undecorated = true  // 移除默认窗口装饰
@@ -56,7 +56,7 @@ fun main() = application {
                 AdbFileManagerTheme {
                     // 自定义窗口布局，包含自定义标题栏
                     CustomWindowFrame(
-                        title = "ADB 文件管理器",
+                        title = "ADB file manager",
                         onCloseRequest = ::exitApplication
                     ) {
                         AppContent()

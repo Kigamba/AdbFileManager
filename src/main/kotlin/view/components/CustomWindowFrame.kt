@@ -83,7 +83,7 @@ fun FrameWindowScope.CustomWindowFrame(
                             ) {
                                 Icon(
                                     imageVector = Icons.Outlined.Minimize,
-                                    contentDescription = "最小化",
+                                    contentDescription = "minimize",
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
@@ -101,7 +101,7 @@ fun FrameWindowScope.CustomWindowFrame(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Outlined.Close,
-                                        contentDescription = "关闭",
+                                        contentDescription = "Close",
                                         tint = MaterialTheme.colorScheme.error
                                     )
                                 }

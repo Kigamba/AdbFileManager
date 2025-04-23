@@ -100,7 +100,7 @@ fun CreateDirectoryDialog(
                     )
                     Spacer(modifier = Modifier.width(16.dp))
                     Text(
-                        text = "创建新文件夹",
+                        text = "Create new folder",
                         style = MaterialTheme.typography.headlineSmall.copy(
                             fontWeight = FontWeight.SemiBold
                         ),
@@ -110,7 +110,7 @@ fun CreateDirectoryDialog(
                     IconButton(onClick = onDismissRequest) {
                         Icon(
                             imageVector = Icons.Outlined.Close,
-                            contentDescription = "关闭",
+                            contentDescription = "Exit",
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
@@ -123,11 +123,11 @@ fun CreateDirectoryDialog(
                     value = dirName,
                     onValueChange = { dirName = it },
                     label = { 
-                        Text("文件夹名称") 
+                        Text("folder name")
                     },
                     placeholder = {
                         Text(
-                            "输入新文件夹名称",
+                            "Enter a new folder name",
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                         )
                     },
@@ -156,7 +156,7 @@ fun CreateDirectoryDialog(
                     supportingText = {
                         if (dirName.isNotEmpty() && !isInputValid) {
                             Text(
-                                "文件夹名称不能包含特殊字符如: / 或 \\",
+                                "Folder names cannot contain special characters such as: / or \\",
                                 color = MaterialTheme.colorScheme.error
                             )
                         }
@@ -182,7 +182,7 @@ fun CreateDirectoryDialog(
                             contentColor = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     ) {
-                        Text("取消")
+                        Text("Cancel")
                     }
                     Spacer(Modifier.width(16.dp))
                     Button(
@@ -197,7 +197,7 @@ fun CreateDirectoryDialog(
                             containerColor = MaterialTheme.colorScheme.primary
                         )
                     ) {
-                        Text("创建")
+                        Text("Create")
                     }
                 }
             }

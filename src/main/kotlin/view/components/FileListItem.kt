@@ -197,7 +197,7 @@ fun FileListItem(
                             color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
                         ) {
                             Text(
-                                text = if (file.link != null) "链接目录" else "目录",
+                                text = if (file.link != null) "Link directory" else "Table of contents",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
@@ -210,7 +210,7 @@ fun FileListItem(
                             color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.1f)
                         ) {
                             Text(
-                                text = "链接",
+                                text = "Link",
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.secondary,
                                 modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
@@ -261,7 +261,7 @@ fun FileListItem(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Edit,
-                            contentDescription = "编辑",
+                            contentDescription = "Edit",
                             tint = MaterialTheme.colorScheme.tertiary
                         )
                     }
@@ -274,7 +274,7 @@ fun FileListItem(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Download,
-                        contentDescription = "下载",
+                        contentDescription = "download",
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
@@ -286,7 +286,7 @@ fun FileListItem(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Delete,
-                        contentDescription = "删除",
+                        contentDescription = "delete",
                         tint = MaterialTheme.colorScheme.error
                     )
                 }
